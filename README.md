@@ -53,6 +53,20 @@ What is missing from the electronic text:
 - Explanatory footnotes from the larger two-volume set.
 
 
+## HOW TO USE
+
+The text is available in the following formats:
+
+- OSIS
+- USFM
+- BibleWorks
+
+The OSIS file is the master file.  Pull requests should be against the
+OSIS XML.
+
+The other two formats are derived from the OSIS by running the
+Unix/Linux "make" program on the Makefile.
+
 ## Maintenance?
 
 Yes.  Suggestions welcome.
