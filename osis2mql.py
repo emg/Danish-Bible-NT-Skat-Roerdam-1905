@@ -162,7 +162,7 @@ class OSISHandler(xml.sax.ContentHandler):
         self.single_tag_elements = {
             #"br" : None
                                     }
-        self.handled_elements = set(["div", "title", "chapter", "verse", "p"])
+        self.handled_elements = set(["div", "title", "chapter", "verse", "p", "hi"])
         self.simple_SR_elements = set(["note"])
 
         self.curmonad = first_monad
@@ -315,7 +315,7 @@ class OSISHandler(xml.sax.ContentHandler):
         elif tag in self.ignored_elements:
             pass
         else:
-            raise ("Error: Unknown start-tag '<" + tag + ">'").encode('utf-8')
+            raise Exception(("Error: Unknown start-tag '<" + tag + ">'").encode('utf-8'))
 
         self.addCurMonadToObjects()
 
@@ -337,6 +337,8 @@ class OSISHandler(xml.sax.ContentHandler):
         elif tag == "p":
             obj = self.createObject("paragraph")
             self.bPrevIsSentenceEnd = True
+        elif tag == "hi":
+            obj = self.createObject("italics")
         elif tag == "title":
             canonical = "false"
             if self.divtypestack[-1] == "bookGroup":
@@ -374,6 +376,8 @@ class OSISHandler(xml.sax.ContentHandler):
             pass # All done at start
         elif tag == "p":
             self.endObject("paragraph")
+        elif tag == "hi":
+            self.endObject("italics")
         elif tag == "title":
             if self.divtypestack[-1] == "bookGroup":
                 self.endObject("title")
@@ -472,7 +476,7 @@ class OSISHandler(xml.sax.ContentHandler):
         elif tag in self.ignored_elements:
             pass
         else:
-            raise ("Error: Unknown end-tag " + tag).encode('utf-8')
+            raise Exception(("Error: Unknown end-tag " + tag).encode('utf-8'))
 
         self.elemstack.pop()
 

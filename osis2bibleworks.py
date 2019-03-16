@@ -152,7 +152,7 @@ class OSISHandler(xml.sax.ContentHandler):
         self.bInVerse = False
 
         self.nixed_elements = set(["header", "work", "date", "type", "identifier", "language", "rights", "refSystem", "note", "title"])
-        self.ignored_elements = set(["osis", "osisText", "chapter", "div", "p"])
+        self.ignored_elements = set(["osis", "osisText", "chapter", "div", "p", "hi"])
 
         self.nixing_stack = []
 
